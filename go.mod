@@ -4,6 +4,7 @@ go 1.16
 
 require (
 	github.com/dipperin/go-ms-toolkit v0.0.37
+	github.com/ethereum/go-ethereum v1.10.3
 	github.com/go-kratos/kratos/v2 v2.2.1
 	github.com/nsqio/go-nsq v1.1.0
 	github.com/shopspring/decimal v1.3.1

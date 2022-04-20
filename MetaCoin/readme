@@ -1,0 +1,23 @@
+
+https://docs.openzeppelin.com/contracts/4.x/erc721
+
+https://github.com/devpavan04/cryptoboys-nft-marketplace/blob/main/src/contracts/CryptoBoys.sol
+
+
+sudo npm install @openzeppelin/contracts-upgradeable
+
+
+
+
+truffle compile
+truffle migrate
+
+
+truffle console
+truffle development
+
+
+let instance = await ERC721.deployed()
+
+
+let nft = await NFTT.deployed()
