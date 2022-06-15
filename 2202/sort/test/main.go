@@ -1,0 +1,64 @@
+package main
+
+import "fmt"
+
+func HeapSort(arr []int,k int) int {
+	length := len(arr)
+	for i := 0; i < length; i++ {
+		lastLen := length - i
+		HeapSortMax(arr, lastLen)
+		if i < length {
+			arr[0], arr[lastLen-1] = arr[lastLen-1], arr[0]
+		}
+		if k == i +1 {
+			return arr[length-k]
+		}
+	}
+	return 0
+}
+
+func HeapSortMax(arr []int, length int) []int {
+	if length <= 1 {
+		return arr
+	}
+	depth := length/2 - 1
+	for i := depth; i >= 0; i-- {
+		topMax := i 
+		leftChild := 2*i + 1
+		rightChild := 2*i + 2
+		if leftChild <= length-1 && arr[leftChild] > arr[topMax] { 
+			topMax = leftChild
+		}
+		if rightChild <= length-1 && arr[rightChild] > arr[topMax] { 
+			topMax = rightChild
+		}
+		if topMax != i {
+			arr[i], arr[topMax] = arr[topMax], arr[i]
+		}
+	}
+	return arr
+}
+
+func main(){
+	myarr := []int{1, 2, 3,2,5,6,7,5,8}
+	a := HeapSort(myarr,3)
+	fmt.Println(a)
+}
+
+
+
+func GetBTNode(root *BTNode)int{
+	i := 0
+	var dfs func(*BTNode)
+	dfs = func(node *BTNode) {
+		if node == nil {
+			return
+		}
+		i ++
+		dfs(node.Left)
+		dfs(node.Right)
+		return
+	}
+	dfs(root)
+	return i
+}
