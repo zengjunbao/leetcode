@@ -24,7 +24,7 @@ func Test_II_036(t *testing.T) {
 			if n < 2{
 				continue
 			}
-			stack = append(stack[:n-2],calculate(token,stack[n-1],stack[n-2]))
+			stack = append(stack[:n-2], calculate(token,stack[n-1],stack[n-2]))
 			continue
 		}
 		stack = append(stack, num)

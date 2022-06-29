@@ -1,3 +1,4 @@
+package sort
 
 func HeapSort22(arr []int,k int) int {
 	length := len(arr)
@@ -36,5 +37,3 @@ func HeapSortMax22(arr []int, length int) []int {
 	}
 	return arr
 }
-
-fun

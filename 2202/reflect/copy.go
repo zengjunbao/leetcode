@@ -1,41 +1,10 @@
-package _struct
+package main
 
 import (
-	"encoding/json"
 	"errors"
 	"reflect"
 )
 
-type OrderA struct {
-	Id      uint64 `json:"id"`
-	Name    string `json:"name,omitempty"`
-	Address string `json:"address,omitempty"`
-	Phone   string `json:"phone,omitempty"`
-}
-
-type OrderB struct {
-	Id      uint64 `json:"id"`
-	Name    string `json:"name,omitempty"`
-	Address string `json:"address,omitempty"`
-	Phone   string `json:"phone,omitempty"`
-	Code    string `json:"code"`
-}
-
-// CopyStruct oldObj 和 newObj 需要传入指针，通过json tag对应
-func CopyStruct2(oldObj interface{}, newObj interface{}) error {
-	data,err := json.Marshal(oldObj)
-	if err != nil {
-		return err
-	}
-	if err := json.Unmarshal(data,newObj); err != nil {
-		return err
-	}
-	return nil
-}
-
-// StructCopy Struct拷贝
-// DstStructPtr type interface  目标结构体
-// SrcStructPtr type interface  源结构体
 func StructCopy(DstStructPtr interface{}, SrcStructPtr interface{}) error {
 	srcV := reflect.ValueOf(SrcStructPtr)
 	dstV := reflect.ValueOf(DstStructPtr)
@@ -64,6 +33,23 @@ func StructCopy(DstStructPtr interface{}, SrcStructPtr interface{}) error {
 			dst.Set(src)
 			continue
 		}
+
+		// if src.Kind() == reflect.Slice && dst.Kind() == reflect.Slice {
+		// 	d2 := make([]reflect.Value,src.Len())
+		// 	// dstSlice := reflect.ValueOf(dst.Kind()).Elem()
+		// 	dstSlice := reflect.Value{}
+		// 	for i:= 0 ;i < src.Len();i++ {
+		// 		value := src.Index(i) // Value of item
+		// 		// srcTyp := value.Type() // Type of item
+		// 		if err := StructCopy(&d2[i],&value);err != nil {
+		// 			return err
+		// 		}
+		// 	}
+		// 	dstSlice = reflect.Append(dstSlice,d2...)
+		// 	dst.Set(dstSlice)
+		// 	continue
+		// }
+		
 		if src.Kind() == reflect.Ptr && !src.IsNil() && src.Type().Elem() == dst.Type() {
 			dst.Set(src.Elem())
 			continue
