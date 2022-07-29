@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 func main() {
 
 }
@@ -18,11 +20,12 @@ func (s *s1) getKey() uint {
 	return 0
 }
 
-func getFunc(list l1) bool{
+func getFunc(list l1) bool {
 	mp := make(map[uint]bool)
 	for _, v := range list {
 		mp[v.getKey()] = true
 	}
-	
+	var i chan int
+	fmt.Println(i)
 	return false
 }
